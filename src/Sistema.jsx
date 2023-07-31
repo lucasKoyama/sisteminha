@@ -9,9 +9,32 @@ function Sistema() {
   const [players, setPlayers] = useState({});
   const [dice, setDice] = useState([]);
 
+  const phoneMask = (number) => {
+    const cleaned = ('' + number).replace(/\D/g, '');
+    let maskedNumber = cleaned.length === 11 ? "(__) _____-____" : "(__) ____-____";
+    for (let i = 0; i < cleaned.length; i++) {
+      maskedNumber = maskedNumber.replace('_', cleaned.charAt(i));
+    }
+    return maskedNumber;
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Backspace') {
+      setCellphone((prevNumber) => prevNumber.slice(0, -1));
+      event.preventDefault();
+    }
+  };
+
   const handleAddPlayer = (event) => {
     event.preventDefault();
-    const updatedPlayers = { ...players, [newPlayer]: { bank: 25000, color } };
+    const updatedPlayers = {
+      ...players,
+      [newPlayer]: {
+        bank: 25000,
+        color,
+        cellphone,
+      }
+    };
     setPlayers(updatedPlayers);
     localStorage.setItem('save', JSON.stringify(updatedPlayers));
   };
@@ -21,6 +44,7 @@ function Sistema() {
     localStorage.clear();
     setNewPlayer('');
     setPlayers({});
+    setCellphone('');
     setColor('');
     setDice([]);
   };
@@ -59,6 +83,8 @@ function Sistema() {
           <input
             className='cellphone'
             onChange={ (event) => setCellphone(event.target.value) }
+            onKeyDown={ handleKeyDown }
+            value={ phoneMask(cellphone) }
             placeholder='(19) 99540-5067'
             type="tel"
             name="cellphone"
@@ -67,11 +93,11 @@ function Sistema() {
           <button onClick={ (event) => handleAddPlayer(event) }>Adicionar</button>
           <button onClick={ (event) => roll(event) }>
             Dados
-            <i class="fa-solid fa-dice" />
+            <i className="fa-solid fa-dice" />
           </button>
           <div className='dices'>
-            <i class={`fa-solid fa-dice-${diceNum[dice[0] - 1]}`} />
-            <i class={`fa-solid fa-dice-${diceNum[dice[1] - 1]}`} />
+            <i className={`fa-solid fa-dice-${diceNum[dice[0] - 1]}`} />
+            <i className={`fa-solid fa-dice-${diceNum[dice[1] - 1]}`} />
             <h5>{ dice.length ? dice[0] + dice[1] : '' }</h5>
           </div>
           <button onClick={ (event) => handleReset(event) }>Reset</button>
@@ -89,7 +115,7 @@ function Sistema() {
         </thead>
         <tbody>
           { Object.entries(players).map((player) => (
-            <Player player={ player } players={ players } setPlayers={ setPlayers } />
+              <Player key={ player.name } player={ player } players={ players } setPlayers={ setPlayers } />
           )) }
         </tbody>
       </table>

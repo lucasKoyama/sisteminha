@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 function Player({player, players, setPlayers}) {
   const [addValue, setAddValue] = useState('');
@@ -26,9 +27,14 @@ function Player({player, players, setPlayers}) {
       <td>{ player[0] }</td>
       <td>
         { `R$ ${player[1].bank}` }
-        <button className='bank-account-msg'>
-          <i class="fa-solid fa-building-columns" />
-        </button>
+        <a
+          className='bank-account-msg'
+          href={`https://api.whatsapp.com/send/?phone=${player[1].cellphone}&text=Conta: R$${player[1].bank}`}
+          target='_blank'
+          rel='noreferrer'
+        >
+          <i className="fa-solid fa-mobile-screen-button" />
+        </a>
       </td>
       <td className='add'>
         <input
@@ -38,7 +44,7 @@ function Player({player, players, setPlayers}) {
           onKeyUp={ (event) => { if (event.key === 'Enter') { handleAdd(player) }}}
         />
         <button className='operation' onClick={ () => handleAdd(player) }>
-          <i class="fa-solid fa-plus" />
+          <i className="fa-solid fa-plus" />
         </button>
       </td>
       <td className='remove'>
@@ -49,7 +55,7 @@ function Player({player, players, setPlayers}) {
           onKeyUp={ (event) => { if (event.key === 'Enter') { handleRemove(player) }}}
         />
         <button className='operation' onClick={ () => handleRemove(player) }>
-          <i class="fa-solid fa-minus" />
+          <i className="fa-solid fa-minus" />
         </button>
       </td>
       <td className='acquittance'>
@@ -64,5 +70,9 @@ function Player({player, players, setPlayers}) {
     </tr>
   );
 }
+
+Player.propTypes = ({
+  player: PropTypes.array,
+}).isRequired;
 
 export default Player;
