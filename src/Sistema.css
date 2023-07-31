@@ -36,6 +36,8 @@
 .dices {
   display: flex;
   align-items: center;
+  position: relative;
+  top: 7.5px;
 }
 
 .dices * {
@@ -108,6 +110,10 @@
   .add-player .color {
     max-width: 30px;
     height: 30px;
+  }
+
+  .dices {
+    font-size: 20px;
   }
 
 }
