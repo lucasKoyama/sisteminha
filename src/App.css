@@ -5,7 +5,11 @@ html {
 
 input {
   padding: 4px;
-  font-size: 2vw;
+  font-size: 0.6rem;
+}
+
+button {
+  font-size: 0.6rem;
 }
 
 /* For modern browsers */
@@ -22,4 +26,10 @@ input[type="number"] {
 a {
   text-decoration: none;
   color: rgb(3, 3, 3);
+}
+
+@media screen and (max-width: 730px) {
+  input, button {
+    font-size: 12px;
+  }
 }

@@ -1,8 +1,15 @@
 .add-player {
   display: flex;
+  flex-direction: row ;
   justify-content: center;
+  align-items: center;
   padding: 15px;
   background-color: rgb(230, 230, 230);
+}
+
+.add-player div {
+  display: flex;
+  margin-bottom: 15px;
 }
 
 .color {
@@ -18,10 +25,10 @@
 
 .add-player button {
   cursor: pointer;
-  font-size: 1.5vw;
   padding: 5px;
-  margin-left: 20px;
+  margin-left: 1vw;
   width: 10vw;
+  min-width: 80px;
   max-width: 180px;
   border-radius: 10px;
 }
@@ -32,7 +39,7 @@
 }
 
 .dices * {
-  margin-left: 5px;
+  margin-left: 0.5vw;
 }
 
 .sistema {
@@ -56,7 +63,7 @@
   font-size: 2vw;
   position: relative;
   top: -4px;
-  margin-left: 10px;
+  margin-left: 1vw;
   padding: 2px;
 }
 
@@ -72,8 +79,8 @@
 
 .operation {
   cursor: pointer;
-  right: 10px;
-  top: 2px;
+  right: 2%;
+  top: 5%;
   position: absolute;
   font-size: 2.5vw;
   border: none;
@@ -87,4 +94,20 @@
 
 .remove .operation {
   color: rgb(132, 3, 3);
+}
+
+@media screen and (max-width: 730px) {
+  .add-player {
+    flex-direction: column;
+  }
+
+  .add-player input {
+    width: 120px;
+  }
+
+  .add-player .color {
+    max-width: 30px;
+    height: 30px;
+  }
+
 }

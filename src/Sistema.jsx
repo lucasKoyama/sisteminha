@@ -67,40 +67,44 @@ function Sistema() {
     <>
       <form>
         <fieldset className='add-player'>
-          <input
-            onChange={(event) => setNewPlayer(event.target.value) }
-            placeholder='Lucas'
-            value={ newPlayer }
-            style={ { backgroundColor: color } }
-          />
-          <input
-            className='color'
-            onChange={(event) => setColor(event.target.value) }
-            type="color"
-            name="color"
-            id="color"
-          />
-          <input
-            className='cellphone'
-            onChange={ (event) => setCellphone(event.target.value) }
-            onKeyDown={ handleKeyDown }
-            value={ phoneMask(cellphone) }
-            placeholder='(19) 99540-5067'
-            type="tel"
-            name="cellphone"
-            id="cellphone"
-          />
-          <button onClick={ (event) => handleAddPlayer(event) }>Adicionar</button>
-          <button onClick={ (event) => roll(event) }>
-            Dados
-            <i className="fa-solid fa-dice" />
-          </button>
-          <div className='dices'>
-            <i className={`fa-solid fa-dice-${diceNum[dice[0] - 1]}`} />
-            <i className={`fa-solid fa-dice-${diceNum[dice[1] - 1]}`} />
-            <h5>{ dice.length ? dice[0] + dice[1] : '' }</h5>
+          <div className='inputs-add-player'>
+            <input
+              onChange={(event) => setNewPlayer(event.target.value) }
+              placeholder='Lucas'
+              value={ newPlayer }
+              style={ { backgroundColor: color } }
+            />
+            <input
+              className='color'
+              onChange={(event) => setColor(event.target.value) }
+              type="color"
+              name="color"
+              id="color"
+            />
+            <input
+              className='cellphone'
+              onChange={ (event) => setCellphone(event.target.value) }
+              onKeyDown={ handleKeyDown }
+              value={ phoneMask(cellphone) }
+              placeholder='(19) 99540-5067'
+              type="tel"
+              name="cellphone"
+              id="cellphone"
+            />
           </div>
-          <button onClick={ (event) => handleReset(event) }>Reset</button>
+          <div className='buttons-add-player'>
+            <button onClick={ (event) => handleAddPlayer(event) }>Adicionar</button>
+            <button onClick={ (event) => roll(event) }>
+              Dados
+              <i className="fa-solid fa-dice" />
+            </button>
+            <div className='dices'>
+              <i className={`fa-solid fa-dice-${diceNum[dice[0] - 1]}`} />
+              <i className={`fa-solid fa-dice-${diceNum[dice[1] - 1]}`} />
+              <h5>{ dice.length ? dice[0] + dice[1] : '' }</h5>
+            </div>
+            <button onClick={ (event) => handleReset(event) }>Reset</button>
+          </div>
         </fieldset>
       </form>
       <table className='sistema'>
